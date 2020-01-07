@@ -4,10 +4,11 @@ using System.Reactive;
 using System.Reactive.Disposables;
 using DynamicData;
 using ReactiveUI;
+using Sextant;
 
 namespace ListView
 {
-    public class ListViewModel : ReactiveObject
+    public class ListViewModel : ReactiveObject, IViewModel
     {
         private static readonly CompositeDisposable Registrations = new CompositeDisposable();
         private readonly ItemDataService _itemDataService;
@@ -65,6 +66,8 @@ namespace ListView
                 return Unit.Default;
             });
         }
+
+        public string Id { get; } = "List View";
 
         public ObservableCollection<TableCellViewModel> Items
         {

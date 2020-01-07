@@ -59,6 +59,7 @@
     <CodesignKey>iPhone Developer</CodesignKey>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Composition.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="ItemDataService.cs" />
     <Compile Include="ItemType.cs" />
@@ -88,10 +89,16 @@
       <Version>6.13.13</Version>
     </PackageReference>
     <PackageReference Include="ReactiveUI">
-      <Version>10.3.6</Version>
+      <Version>11.1.6</Version>
     </PackageReference>
     <PackageReference Include="ReactiveUI.Events">
-      <Version>10.3.6</Version>
+      <Version>11.1.6</Version>
+    </PackageReference>
+    <PackageReference Include="Sextant">
+      <Version>2.5.1</Version>
+    </PackageReference>
+    <PackageReference Include="Splat.DryIoc">
+      <Version>9.3.4</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Essentials" Version="1.1.0" />
   </ItemGroup>
