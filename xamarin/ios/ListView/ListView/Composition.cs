@@ -2,6 +2,7 @@ using System;
 using DryIoc;
 using ReactiveUI;
 using Sextant;
+using Sextant.Abstractions;
 using Splat;
 using Splat.DryIoc;
 using UIKit;
@@ -14,12 +15,17 @@ namespace ListView
 
         static Composition()
         {
-            _container = new Container();
+            _container = new Container(rules => rules.WithoutThrowOnRegisteringDisposableTransient());
 
             var navigationViewController = new NavigationViewController(RxApp.MainThreadScheduler, RxApp.TaskpoolScheduler, ViewLocator.Current);
             _container.RegisterInstance<IView>(navigationViewController, serviceKey: nameof(NavigationViewController));
-            _container.Register<IParameterViewStackService>(Reuse.Singleton);
-            _container.Register<ItemDataService>();
+            _container
+                .RegisterInstance<IParameterViewStackService>(new ParameterViewStackService(navigationViewController));
+            _container.Register<IViewModelFactory, DefaultViewModelFactory>();
+
+            _container.Register<IViewFor<ListViewModel>, ListController>();
+            _container.Register<ListViewModel>();
+            _container.RegisterInstance<ItemDataService>(new ItemDataService());
             
             _container.UseDryIocDependencyResolver();
         }

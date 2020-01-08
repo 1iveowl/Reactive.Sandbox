@@ -4,9 +4,15 @@ namespace ListView
 {
     public class Item
     {
-        public Guid Id { get; set; } = Guid.NewGuid();
+        public Item()
+        {
+            Id = Guid.NewGuid();
+            Type = ItemType.Some;
+        }
 
-        public ItemType Type { get; set; } = ItemType.Some;
+        public Guid Id { get; set; }
+
+        public ItemType Type { get; set; }
 
         public bool IsToggled { get; set; }
     }
